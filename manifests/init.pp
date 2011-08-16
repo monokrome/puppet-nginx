@@ -7,6 +7,15 @@ class nginx {
 	service {
 		"nginx":
 			ensure => running,
+			require => Package["nginx"],
+	}
+
+	file {
+		"/etc/nginx":
+			ensure => directory,
+			require => Package["nginx"],
+			source => "puppet:///nginx/nginx",
+			recurse => true,
 	}
 }
 
